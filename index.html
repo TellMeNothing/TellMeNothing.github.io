@@ -1,0 +1,42 @@
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    button {
+      width: 100px;
+      height: 50px;
+      font-size: 20px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Control de relé con Arduino y ESP8266</h1>
+  <p>Presiona los botones para encender o apagar el relé</p>
+  <button id="on">ON</button>
+  <button id="off">OFF</button>
+  <script>
+    // Obtiene los elementos del DOM
+    var onButton = document.getElementById("on");
+    var offButton = document.getElementById("off");
+
+    // Agrega eventos de clic a los botones
+    onButton.addEventListener("click", function() {
+      // Envia una petición GET al ESP8266 con el parámetro "H"
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://192.168.1.100/?H", true);
+      xhr.send();
+    });
+
+    offButton.addEventListener("click", function() {
+      // Envia una petición GET al ESP8266 con el parámetro "L"
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://192.168.1.100/?L", true);
+      xhr.send();
+    });
+  </script>
+</body>
+</html>
